@@ -1,3 +1,3 @@
 # movies-explorer-api
 
-[адрес](http://api.alexkarpov.students.nomoredomains.xyz/)
+[http://api.alexkarpov.students.nomoredomains.xyz/](http://api.alexkarpov.students.nomoredomains.xyz/)
