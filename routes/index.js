@@ -36,4 +36,8 @@ router.post('/signup', celebrate({
 router.use('/users', isAuthorized, usersRoutes);
 router.use('/movies', isAuthorized, moviesRoutes);
 
+router.use((req, res, next) => {
+  next(new NotFound('Страница не найдена'));
+});
+
 module.exports = router;

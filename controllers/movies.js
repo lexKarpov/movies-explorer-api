@@ -12,6 +12,7 @@ function getMovies(req, res, next) {
 }
 
 function postMovie(req, res, next) {
+  const owner = req.user._id;
   const {
     country,
     director,
@@ -27,6 +28,7 @@ function postMovie(req, res, next) {
   } = req.body;
 
   Movie.create({
+    owner,
     country,
     director,
     duration,
