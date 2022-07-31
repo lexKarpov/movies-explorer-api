@@ -12,7 +12,8 @@ function getMovies(req, res, next) {
 }
 
 function postMovie(req, res, next) {
-  const owner = req.user._id;
+  const owner = req.user.id.toString();
+
   const {
     country,
     director,
@@ -20,7 +21,7 @@ function postMovie(req, res, next) {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -35,7 +36,7 @@ function postMovie(req, res, next) {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
