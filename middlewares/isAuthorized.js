@@ -15,7 +15,7 @@ function isAuthorized(req, res, next) {
 
   try {
     const payload = checkToken(token);
-    User.findOne({ email: payload.email })
+    User.findOne({ _id: payload._id })
       .then((user) => {
         if (!user) {
           next(new InternalServer('Что-то пошло не так'));

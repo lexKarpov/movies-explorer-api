@@ -4,7 +4,7 @@ const usersRoutes = require('./users');
 const moviesRoutes = require('./movies');
 const { login, createUser } = require('../controllers/users');
 const { isAuthorized } = require('../middlewares/isAuthorized');
-const { NotFound } = require('../errors/Error404');
+const NotFound = require('../errors/Error404');
 
 router.post('/signin', celebrate({
   body: Joi.object().keys({

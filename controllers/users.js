@@ -18,7 +18,8 @@ function getUser(req, res, next) {
 function patchUser(req, res, next) {
   const { email, name } = req.body;
   User.findByIdAndUpdate(req.user.id, { email, name }, { new: true, runValidators: true })
-    .then((user) => (!user ? next(new NotFound('Пользователь с таким id не найден')) : res.send(user)));
+    .then((user) => (!user ? next(new NotFound('Пользователь с таким id не найден')) : res.send(user)))
+    .catch(next);
 }
 
 function createUser(req, res, next) {
@@ -27,21 +28,17 @@ function createUser(req, res, next) {
     password,
     name,
   } = req.body;
-  User.findOne({ email })
+  bcrypt
+    .hash(password, SALT_ROUNDS)
+    .then((hash) => User.create({
+      name,
+      email,
+      password: hash,
+    }))
     .then((user) => {
-      if (!user) {
-        return bcrypt
-          .hash(password, SALT_ROUNDS)
-          .then((hash) => User.create({
-            email,
-            password: hash,
-            name,
-          }));
-      }
-      throw new Conflict(`${user.email} уже занят`);
-    })
-    .then((user) => {
-      res.status(201).send(user);
+      const newUser = user.toObject();
+      delete newUser.password;
+      res.send(newUser);
     })
     .catch((err) => {
       if (err.code === ERROR_DUPLICATE) {
@@ -78,7 +75,7 @@ function login(req, res, next) {
       if (!isPasswordCorrect) {
         throw new Unauthorized('Не авторизован');
       } else {
-        const token = generateToken({ email: user.email, type: 'admin' });
+        const token = generateToken({ _id: user._id.toString(), type: 'admin' });
         res.send({ token });
       }
     })

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const regExpURL = require('../constants/constants');
+const { regExpURL } = require('../constants/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {

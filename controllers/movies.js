@@ -56,7 +56,7 @@ function deleteMovie(req, res, next) {
         next(new Forbidden('Нельзя удалить эту карточку'));
         return;
       }
-      movie.remove().then(() => res.send(movie));
+      movie.remove().then(() => res.send('Видео успешно удалено'));
     })
     .catch((err) => {
       if (err.name === 'CastError') {

@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -18,8 +19,10 @@ const options = {
   ],
   credentials: true,
 };
+const mongoUrl = process.env.DATABASE_URL ? process.env.DATABASE_URL : 'mongodb://localhost:27017/moviesdb';
 
-mongoose.connect('mongodb://localhost:27017/moviesdb');
+mongoose.connect(mongoUrl);
+
 app.use('*', cors(options));
 app.use(helmet());
 app.use(bodyParser.json());
@@ -28,6 +31,7 @@ app.use(express.json());
 
 app.use(requestLogger);
 app.use(limiter);
+
 app.use(require('./routes/index'));
 
 app.use(errorLogger);
