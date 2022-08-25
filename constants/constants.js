@@ -7,7 +7,8 @@ const ERROR_CODE_409 = 409;
 const ERROR_DUPLICATE = 11000;
 const RES_OK = 200;
 const RES_CREATED = 201;
-const regExpURL = /^http(s)?:\/\/(www\.)?([\w-]+\.)+(\w)+(\/[\w-._~:/?#[\]@!$&'()*+,;=]+)?#?$/;
+// const regExpURL = /^http(s)?:\/\/(www\.)?([\w-]+\.)+(\w)+(\/[\w-._~:/?#[\]@!$&'()*+,;=]+)?#?$/;
+const regExpURL = /^((https?):\/\/)(www.)?[a-z0-9-]+\.[a-z]+[a-z0-9/\-._~:%?#[\]@!$&='()*+,;]+#?$/i;
 const SALT_ROUNDS = 10;
 
 module.exports = {
