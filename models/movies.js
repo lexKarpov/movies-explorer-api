@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { regExpURL } = require('../constants/constants');
 
+
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
@@ -30,7 +31,7 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     required: true,
-    match: [regExpURL, 'Введите корректный URL'],
+    // match: [regExpURL, 'Введите корректный URL'],
   },
 
   trailerLink: {
