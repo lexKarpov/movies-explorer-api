@@ -13,7 +13,6 @@ function getMovies(req, res, next) {
 
 function postMovie(req, res, next) {
   const owner = req.user.id.toString();
-
   const {
     country,
     director,
@@ -56,7 +55,7 @@ function deleteMovie(req, res, next) {
         next(new Forbidden('Нельзя удалить эту карточку'));
         return;
       }
-      movie.remove().then(() => res.send('Видео успешно удалено'));
+      movie.remove().then(() => res.send({ message:  'Видео успешно удалено' }));
     })
     .catch((err) => {
       if (err.name === 'CastError') {

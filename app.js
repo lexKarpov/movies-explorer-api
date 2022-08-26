@@ -11,11 +11,13 @@ const { centralErrorsHandler } = require('./middlewares/centralErrorsHandler');
 
 const app = express();
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 const options = {
   origin: [
     'http://localhost:3000',
+    'http://alexkarpov.students.nomoredomains.xyz',
+    'https://alexkarpov.students.nomoredomains.xyz',
   ],
   credentials: true,
 };
